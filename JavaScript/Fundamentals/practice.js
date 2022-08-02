@@ -85,3 +85,45 @@ console.log(canAfford(100, 500))
 
 /// CallBack Functions
 
+var exampleFunction = (message) =>{
+    console.log(message)
+}
+
+function parentFunction(callback){
+    callback("Info from parent")
+}
+
+exampleFunction("Hello")
+parentFunction(exampleFunction)
+
+parentFunction( function(message){
+    console.log(message)
+} )
+
+const arr = [1,2,3,4]
+arr.push(5)
+
+const arr2 = Object.freeze([1, 2, 4, 5])
+// arr2.push(7)  Throws an error
+
+const items = Object.freeze(["carrots", "onions", "celery", "mushrooms", "butter", "thyme"]);
+// items.sort(); // this will throw an error 
+
+const sortedItems = [...items].sort()
+console.log(sortedItems)
+
+const numbers = [10, 5, 3, 12, 22, 8];
+numbers.sort();
+// this will return [10, 12, 22, 3, 5, 8 ]
+// Sort accecpts a sort function returns a-b (neg, 0, or pos num)
+numbers.sort(function(a, b){return a-b})
+console.log(numbers)
+
+// .map()
+const groceries = ["pearl onions", "cremini mushrooms", "thyme"];
+const groceryList = groceries.map( item => `<li>${item}</li>` ); // map function
+console.log(groceryList)
+
+var animals1 = [2, 5, 6, 5, 9]
+var moreAnimals = animals1.map(num => num*3)
+console.log(moreAnimals)
