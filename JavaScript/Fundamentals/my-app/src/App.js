@@ -1,12 +1,11 @@
 import './App.css';
-import HelloWorld from './components/HelloWorld';
+import React from 'react';
 import Dash from './components/Dash';
 
 function App() {
   return (
     <div className="App">
-      <HelloWorld name={'Bob'} age={90} last_name={'Joe'}/>
-      <Dash/>
+      <Dash fruits={['bananna', 'apple', 'grapes']}/>
     </div>
   );
 }
