@@ -1,5 +1,6 @@
 import './App.css';
 import PersonalCard from './components/PersonalCard';
+import SyntheticEvents from './components/SyntheticEvents';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         age={25}
         hairColor={"Blonde"}
       />
+      <SyntheticEvents/>
     </div>
   );
 }
