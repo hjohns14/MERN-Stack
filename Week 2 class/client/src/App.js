@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import DynamicPersonCard from './components/DynamicPersonCard';
 import Form from './components/Form';
+import View from './components/View';
 
 function App() {
   const apiData =[
@@ -25,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <Form name={name} setName={setName} email={email} setEmail={setEmail} password={password} setPassword={setPassword} state={state} setState={setState}/>
+      <View name={name} email={email} password={password}/>
       {state.map((item, index)=>{
         return <DynamicPersonCard key={index} item={item}/>
       })}
