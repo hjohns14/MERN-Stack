@@ -5,7 +5,7 @@ const MyForm = (props) => {
     const styledForm = {
         display: "flex",
         flexDirection: 'column',
-        alignItems: "center",
+        alignItems: "center",-
     }
 
     const handleChange = (e) =>{
