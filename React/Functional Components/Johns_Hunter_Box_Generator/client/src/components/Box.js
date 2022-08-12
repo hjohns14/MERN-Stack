@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Box = (props) => {
-    const {item:{color}} = props
+    const {item:{color, height}} = props
 
     const box = {
-        width: '150px',
-        height: '150px',
+        width: height+'px',
+        height: height+'px',
         backgroundColor: color,
         margin: '20px'
     }
