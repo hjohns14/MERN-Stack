@@ -1,6 +1,6 @@
 import './App.css';
 import TodoItem from './components/TodoItem';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 
 
 
@@ -21,15 +21,25 @@ function App() {
     }
   ]
 
-  const [state, setState] = useState(todoList)
+
+
+  const [state, setState] = useState(() =>{
+    const saved = localStorage.getItem('state')
+    const arr = JSON.parse(saved)
+    return arr || todoList
+  })
   const [newTodo, setNewTodo] = useState('')
+  console.log(state)
   const addTodo = (e) =>{
     e.preventDefault()
     setState([...state, {todo: newTodo, completed:false}])
     setNewTodo('')
   }
 
-
+  useEffect(() =>{  
+    localStorage.setItem('state', JSON.stringify(state))
+  }, [state]
+  )
 
   return (
     <div className="App flex justify-center items-center flex-col">
