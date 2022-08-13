@@ -12,11 +12,16 @@ const TodoItem = (props) => {
     }
 
     const handleComplete = (e) => {
-        const newStateItem = {todo: todo, completed:true}
-        const filteredState = state.filter((items, index) => 
-            index !== id
-        )
-        setState([...filteredState, newStateItem])
+        if (e.target.checked === true){
+            const tempState = [...state]
+            tempState[id].completed = true
+            setState(tempState)
+        }
+        else{
+            const tempState = [...state]
+            tempState[id].completed = false
+            setState(tempState)
+        }
     }
 
     return (
@@ -32,8 +37,8 @@ const TodoItem = (props) => {
             }   
             {
             completed === true ?
-                <input className='m-3 w-8 h-8' type="checkbox" name="check" onClick={handleComplete} checked/> :
-                <input className='m-3 w-8 h-8' type="checkbox" name="check" onClick={handleComplete} />
+                <input className='m-3 w-8 h-8' type="checkbox" name="check" onChange={handleComplete}/> :
+                <input className='m-3 w-8 h-8' type="checkbox" name="check" onChange={handleComplete}/>
             }
 
             <button className='m-2 px-4 py-1 border border-gray-700 bg-red-400 rounded-md shadow-md' onClick={handleDelete}>Delete</button>
