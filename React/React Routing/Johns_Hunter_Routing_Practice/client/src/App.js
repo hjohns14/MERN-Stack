@@ -1,29 +1,11 @@
 import './App.css';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Display from './components/Display';
 
 import React from 'react'
 
-const Home = (props) => {
-  return (
-    <div>
-      <h1>
-        Home Component
-      </h1>
-      <Link to={'/about'}>Go To About Page</Link>
-    </div>
-  )
-}
 
-const About = (props) => {
-  return (
-    <div>
-      <h1>
-        About Component
-      </h1>
-      <Link to={'/'}>Go To Home Page</Link>
-    </div>
-  )
-}
 
 
 
@@ -33,7 +15,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/about' element={<About/>}/>
+        <Route path='/:first' element={<Display/>}/>
+        <Route path='/:first/:textColor/:bgColor' element={<Display/>}/>
       </Routes>
       
     </div>
