@@ -1,17 +1,18 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
   const baseUrl ="https://pokeapi.co/api/v2/pokemon?limit=10000"
   const [state, setState] = useState([])
   
   useEffect(() =>{
-    fetch(baseUrl)
-    .then(results => {return results.json()})
-    .then(res =>{
-      setState(res.results)
-    })
-  }, [])
+    axios.get(baseUrl)
+    .then(results => {
+      console.log(results)
+      setState(results.data.results)
+  })
+}, [])
 
 
 
