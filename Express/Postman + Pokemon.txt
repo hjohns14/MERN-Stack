@@ -1,0 +1,5 @@
+https://pokeapi.co/api/v2/pokemon/25
+https://pokeapi.co/api/v2/pokemon/alakazam
+https://pokeapi.co/api/v2/pokemon/48
+https://pokeapi.co/api/v2/pokemon/385
+https://pokeapi.co/api/v2/pokemon/525
