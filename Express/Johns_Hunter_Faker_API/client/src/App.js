@@ -1,7 +1,6 @@
 import './App.css';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { faker } from '@faker-js/faker'
 
 function App() {
 
@@ -14,15 +13,6 @@ function App() {
       console.log(err)
     })
   }, [])
-
-  const createProduct = () =>{
-    const newFake ={
-      name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      department: faker.commerce.department(),
-      
-    }
-  }
 
   return (
     <div className="App">
