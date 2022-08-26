@@ -31,7 +31,11 @@ app.get("/api/users", (req, res) => {
 app.post("/api/users", (req, res) => {
   console.log(req.body)
 
-  users.push(req.body)
+  const newUser ={
+    name: req.body.name,
+    email: req.body.email
+  }
+  users.push(newUser1)
 
   res.json({ status: "ok", users })
 })
