@@ -2,11 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import axios from "axios"
 
-const ProductForm = () => {
+const ProductForm = (props) => {
     const [newProduct, setNewProduct] = useState("")
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
+
+    const {products, setProducts} = props
 
     const handleChange = (e) =>{
         switch (e.target.name){
@@ -26,20 +28,21 @@ const ProductForm = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const product ={
+        
+        axios.post("http://localhost:9000/api/products", {
             name,
             description,
             price
-        }
-        setNewProduct(product)
-        createNewProduct(newProduct)
+        })
+        .then(res => {
+            console.log(res.data)
+            setProducts([...products, res.data.newProduct])
+        })
+        .catch(err => console.log(err))
+
     }
 
-    function createNewProduct(product){
-        axios.post("http://localhost:9000/api/products", newProduct)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err))
-    }
+
     return (
         <div className='flex justify-center'>
             <form onSubmit={handleSubmit} className='flex flex-col border border-neutral-500 w-fit bg-blue-50 p-5'>

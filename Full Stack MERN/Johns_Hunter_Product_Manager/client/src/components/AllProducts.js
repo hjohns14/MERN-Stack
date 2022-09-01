@@ -24,10 +24,10 @@ const AllProducts = () => {
                     Home
                 </Link>
             </p>
-        <ProductForm/>
+        <ProductForm products={products} setProducts={setProducts}/>
         <div className='grid sm:grid-cols-2 xl:grid-cols-4'>
             {products.map((item, index) =>
-                    <ProductDisplay key={index} product={item}/>
+                    <ProductDisplay key={index} product={item} allProducts={products} setAllProducts={setProducts}/>
                 )}
         </div>
         </>
