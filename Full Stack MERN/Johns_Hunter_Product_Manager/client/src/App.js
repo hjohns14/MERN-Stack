@@ -1,8 +1,10 @@
 import './App.css';
-import ProductDisplay from './components/ProductDisplay';
 import Home from './components/Home';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom' 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom' 
 import AllProducts from './components/AllProducts';
+import OneProduct from './components/OneProduct';
+import EditProduct from './components/EditProduct';
+
 
 
 function App() {
@@ -12,11 +14,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/products" element={<AllProducts/>}/>
+          <Route path='/products/:id' element={<OneProduct/>}/>
+          <Route path='/edit/:id' element={<EditProduct/>}/>
         </Routes>
       </Router>
-      <div className='grid grid-cols-4'>
-
-      </div>
     </>
     
   );

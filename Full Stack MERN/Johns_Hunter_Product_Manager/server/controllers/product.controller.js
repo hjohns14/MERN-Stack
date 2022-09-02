@@ -12,12 +12,12 @@ module.exports = {
         .catch(err => res.json(err))
     },
     getById: function(req, res) {
-        Product.find({_id: req.params.id})
-        .then(product => res.json(product))
+        Product.findOne({_id: req.params.id})
+        .then(product => res.json({product: product}))
         .catch(err => res.json(err))
     },
     update: function(req, res) {
-        Product.findOneAndUpdate(req.body)
+        Product.findOneAndUpdate({_id: req.params.id}, req.body)
         .then(product => res.json({updatedProduct: product}))
         .catch(err => res.json(err))
     },
