@@ -1,16 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import DeleteButton from './DeleteButton'
 
 const ProductDisplay = (props) => {
     const {_id, name, description, price} = props.product
-    const {allProducts, setAllProducts} = props
-    const [editedName, setName] = useState('')
-    const [editedDescription, setDescription] = useState('')
-    const [editedPrice, setPrice] = useState()
+    const {setAllProducts} = props
 
-    let editing = false
     const handleDelete = () =>{
         axios.delete(`http://localhost:9000/api/products/${_id}`)
         .then(res => {
@@ -41,10 +37,7 @@ const ProductDisplay = (props) => {
                     border-neutral-600 shadow-blue-900 shadow-md bg-fuchsia-500
                     text-white hover:bg-fuchsia-600 active:bg-fuchsia-700 
                     active:translate-y-0.5 active:translate-x-0.5'>Buy</button>
-                    <button className='self-start ml-10 px-2 py-1 border 
-                    border-neutral-600 shadow-blue-900 shadow-md bg-red-500
-                    text-white hover:bg-red-600 active:bg-red-700 
-                    active:translate-y-0.5 active:translate-x-0.5' onClick={handleDelete}>Delete</button>
+                    <DeleteButton handleDelete={handleDelete}/>
                 </h5>
             </div>
         </div>
