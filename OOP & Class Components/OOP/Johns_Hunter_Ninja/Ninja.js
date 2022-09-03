@@ -18,7 +18,24 @@ class Ninja{
     }
 }
 
+class Sensei extends Ninja{
+    constructor(name, wisdom){
+        super(name, 200, 10, 10)
+        this.wisdom = wisdom ||10
+    }
+
+    speakWisdom(){
+        this.drinkSake()
+        console.log("Live laugh love")
+    }
+
+}
+
 const gaiden = new Ninja("Hayabusa", 100)
 gaiden.sayName()
 gaiden.drinkSake()
 gaiden.showStats()
+
+const yoshi = new Sensei("Yoshi")
+
+yoshi.showStats().speakWisdom()
