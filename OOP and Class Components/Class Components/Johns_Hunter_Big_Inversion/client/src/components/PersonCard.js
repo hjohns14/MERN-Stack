@@ -8,6 +8,7 @@ export class PersonCard extends Component {
         }
     }
 
+    // You have to bind the function in the onClick method!
     birthday(){
         this.setState({
             age: this.state.age +1
