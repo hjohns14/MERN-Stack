@@ -22,6 +22,8 @@ class BankAccount{
     }
 }
 
+module.exports = BankAccount
+
 const acct1 = new BankAccount(1000)
 acct1.deposit(500).deposit(100).deposit(1000).withdraw(500).yeildInterest().displayAcctInfo()
 
