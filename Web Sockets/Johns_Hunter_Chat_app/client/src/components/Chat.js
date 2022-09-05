@@ -11,7 +11,7 @@ const Chat = () => {
         })
         
         return socket.disconnect(true)
-    }, [])
+    }, [socket])
     return (
         <div>Chat</div>
     )
