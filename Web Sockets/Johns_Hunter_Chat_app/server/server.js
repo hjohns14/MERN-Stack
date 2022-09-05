@@ -30,13 +30,11 @@ const io = socket(server, {
 io.on("connection", socket =>{
     console.log("Nice to meet you. (Shake hand)\nSocket id: " + socket.id)
 
-    socket.on("event", data =>{
+    socket.emit('welcome', "Hello Client")
+
+    socket.on("message", data =>{
         // send message with 'data' to all clients except the on the emitted the event
         socket.broadcast.emit("Event_to_all_other_clients", data)
     })
-    socket.emit('welcome', "Hello Client")
 
-    socket.on('goodbye', data =>{
-        console.log(data)
-    })
 })
