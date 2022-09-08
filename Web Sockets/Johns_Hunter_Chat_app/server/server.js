@@ -34,7 +34,10 @@ io.on("connection", socket =>{
 
     socket.on("message", data =>{
         // send message with 'data' to all clients except the on the emitted the event
-        socket.broadcast.emit("Event_to_all_other_clients", data)
+        console.log(data)
+
+        //use socket.broadcast.emit to emit to all OTHER sockets
+        socket.emit("get_message", data)
     })
 
 })

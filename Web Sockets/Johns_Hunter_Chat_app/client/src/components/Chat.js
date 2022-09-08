@@ -10,13 +10,22 @@ const Chat = (props) => {
     const [newMessage, setNewMessage] = useState('')
     const [messages, setMessages] = useState([])
     const navigate = useNavigate()
-    const exampleMessages = ["Hello", "Howdy", "How'd'y'do"]
+    
 
     useEffect(()=>{
         window.sessionStorage.setItem("name", name)
-        console.log("Is this working? Yes?")
+
         socket.on("welcome", data =>{
             console.log(data + name)
+        })
+
+        socket.on("get_message", data =>{
+            console.log(data)
+
+            // It is doing this twice?
+            setMessages(prevMessages=>{
+                return [...prevMessages, data.message]
+            })
         })
         // It works without the socket.disconnet not sure why
         //return () => socket.disconnect(true)
@@ -31,7 +40,7 @@ const Chat = (props) => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        setMessages([...messages, newMessage])
+        socket.emit("message", {message: newMessage, name: name})
         setNewMessage("")
 
     }
@@ -44,7 +53,9 @@ const Chat = (props) => {
             <main id='message_window' className='bg-blue-50 flex flex-col justify-end absolute w-3/4 h-3/4 overflow-auto'>
                 <section className=''>
                 {messages.map((item, idx) =>(
+
                         <h1 key={idx} className='m-5  bg-slate-200 w-fit p-3 text-lg rounded-md'>
+                            <span className='text-sm'>{name}</span>
                             {item}
                         </h1>
                 ))}
