@@ -30,11 +30,9 @@ module.exports = {
     register: (req, res) =>{
         User.create(req.body)
         .then( user =>{
+            res.cookie("mycookie", "mydata", {httpOnly:true}).json({message:"This response has a cookie"})
             res.json({msg: "Success", user: user})
         })
-        .catch(err => res.json(err))
+        .catch(err => res.status(400).json(err))
     },
-    login: (req, res) =>{
-        
-    }
 }

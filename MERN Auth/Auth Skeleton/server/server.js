@@ -1,13 +1,18 @@
 const express = require("express")
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
 const app = express()
 const port = 9000
 
 
 app.use(
-    cors(),
+    cors({
+        credentials:true,
+        origin: "http://localhost:3000"
+    }),
     express.json(),
-    express.urlencoded({extended:true})
+    express.urlencoded({extended:true}),
+    cookieParser()
 )
 
 
