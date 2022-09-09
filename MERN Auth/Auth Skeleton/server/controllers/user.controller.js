@@ -1,4 +1,8 @@
 const User = require("../models/user.model")
+const bcrypt = require("bcrypt")
+const jwt = require('jsonwebtoken')
+const {secret, authenticate} = require("../config/jwt.config")
+require('dotenv').config()
 
 module.exports = {
     //Create used for  registration or testing
@@ -30,9 +34,37 @@ module.exports = {
     register: (req, res) =>{
         User.create(req.body)
         .then( user =>{
-            res.cookie("mycookie", "mydata", {httpOnly:true}).json({message:"This response has a cookie"})
-            res.json({msg: "Success", user: user})
+            res.cookie("mycookie", "mydata", {httpOnly:true}).json({message:"This response has a cookie", user: user})
         })
         .catch(err => res.status(400).json(err))
     },
+    login: async (req, res) =>{
+        const user = await User.findOne({userName: req.body.userName})
+
+        if (user === null){
+            return res.sendStatus(401).json({message: "User Not Found"})
+        }
+
+        const correctPassword = await bcrypt.compare(req.body.password, user.password)
+
+        if (!correctPassword){
+            return res.sendStatus(401)
+        }
+
+        const userToken = jwt.sign({
+            id: user._id
+        }, process.env.SECRET_KEY)
+
+        res
+        .cookie('usertoken', userToken, secret, {
+            httpOnly: true
+        })
+        .json({msg: "Success", id: user._id})
+    },
+    logout: (req, res) =>{
+        res.clearCookie("usertoken")
+        res.sendStatus(200)
+    }
+
+
 }

@@ -1,0 +1,19 @@
+/* CLIENT */
+
+tailwindcss
+postcss
+autoprefixer
+axios
+react-router-dom
+
+
+/* SERVER */
+
+mongoose
+express
+bcrypt
+cors
+dotenv
+jsonwebtoken
+cookie-parser
+
